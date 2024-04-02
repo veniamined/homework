@@ -1,0 +1,196 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: you
+      changes:
+        - createTable:
+            tableName: ProductCategories
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: Manufacturers
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: Products
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: category_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_products_category_id
+                    referencedTableName: ProductCategories
+                    referencedColumnNames: id
+              - column:
+                  name: manufacturer_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_products_manufacturer_id
+                    referencedTableName: Manufacturers
+                    referencedColumnNames: id
+        - createTable:
+            tableName: Customers
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: phone
+                  type: varchar(20)
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: Orders
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: order_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_orders_customer_id
+                    referencedTableName: Customers
+                    referencedColumnNames: id
+              - column:
+                  name: product_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_orders_product_id
+                    referencedTableName: Products
+                    referencedColumnNames: id
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: Roles
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: Permissions
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: Role_Permissions
+            columns:
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_role_permissions_role_id
+                    referencedTableName: Roles
+                    referencedColumnNames: id
+              - column:
+                  name: permission_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_role_permissions_permission_id
+                    referencedTableName: Permissions
+                    referencedColumnNames: id
