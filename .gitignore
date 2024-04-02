@@ -20,3 +20,35 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+# IntelliJ IDEA files
+.idea/
+
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+
+# Logs and databases
+*.log
+*.sqlite
+*.sqlite3
+
+# User-specific files
+*.iml
+*.iws
+*.ipr
+.idea/
+.idea_modules/
+*.xml
+*.bak
+
+# Directories
+target/
+out/
+build/
+
+# Dependency directory (Gradle, Maven, etc.)
+.gradle/
+.mvn/
