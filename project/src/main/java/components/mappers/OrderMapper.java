@@ -1,7 +1,7 @@
 package components.mappers;
 
 import components.DTO.OrderDTO;
-import components.classes.Order;
+import components.entity.Order;
 import org.modelmapper.ModelMapper;
 
 public class OrderMapper {

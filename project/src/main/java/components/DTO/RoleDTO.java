@@ -2,10 +2,9 @@ package components.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
-
-public class RoleDTO {
 @Setter
 @Getter
+public class RoleDTO {
 private Long id;
     private String name;
 

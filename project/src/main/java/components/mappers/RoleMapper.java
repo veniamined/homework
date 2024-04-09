@@ -1,7 +1,7 @@
 package components.mappers;
 
 import components.DTO.RoleDTO;
-import components.classes.Role;
+import components.entity.Role;
 import org.modelmapper.ModelMapper;
 
 public class RoleMapper {

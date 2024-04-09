@@ -1,6 +1,6 @@
 package components.repositories;
 
-import components.classes.RolePermission;
+import components.entity.RolePermission;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

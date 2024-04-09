@@ -1,7 +1,7 @@
 package components.mappers;
 
 import components.DTO.ManufacturerDTO;
-import components.classes.Manufacturer;
+import components.entity.Manufacturer;
 import org.modelmapper.ModelMapper;
 
 public class ManufacturerMapper {

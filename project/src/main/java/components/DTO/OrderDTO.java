@@ -5,10 +5,10 @@ import lombok.Setter;
 
 
 import java.util.Date;
-
+@Getter
+@Setter
 public class OrderDTO {
-    @Getter
-    @Setter
+
     private Long id;
     private Date orderDate;
     private String status;

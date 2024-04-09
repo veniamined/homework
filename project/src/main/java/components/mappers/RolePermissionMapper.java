@@ -1,7 +1,7 @@
 package components.mappers;
 
 import components.DTO.RolePermissionDTO;
-import components.classes.RolePermission;
+import components.entity.RolePermission;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
