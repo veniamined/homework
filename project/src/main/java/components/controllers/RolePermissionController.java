@@ -29,10 +29,7 @@ public class RolePermissionController {
     @GetMapping("/{id}")
     public ResponseEntity<RolePermissionDTO> getRolePermissionById(@PathVariable Long id) {
         RolePermissionDTO dto = rolePermissionService.getById(id);
-        if (dto == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(dto, HttpStatus.OK);
+        return new ResponseEntity<>(dto, dto != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
@@ -44,10 +41,7 @@ public class RolePermissionController {
     @PutMapping("/{id}")
     public ResponseEntity<RolePermissionDTO> updateRolePermission(@PathVariable Long id, @RequestBody RolePermissionDTO dto) {
         RolePermissionDTO updatedDto = rolePermissionService.update(id, dto);
-        if (updatedDto == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(updatedDto, HttpStatus.OK);
+        return new ResponseEntity<>(updatedDto, updatedDto != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
