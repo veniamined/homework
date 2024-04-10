@@ -6,7 +6,9 @@ import components.entity.RolePermission;
 import components.mappers.RolePermissionMapper;
 import components.repositories.RolePermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +33,8 @@ public class RolePermissionServiceImpl implements RolePermissionService {
 
     @Override
     public RolePermissionDTO getById(Long id) {
-        return rolePermissionMapper.toDto(rolePermissionRepository.findById(id).orElse(null));
+        RolePermission rolePermission = getRolePermissionById(id);
+        return rolePermissionMapper.toDto(rolePermission);
     }
 
     @Override
@@ -43,10 +46,7 @@ public class RolePermissionServiceImpl implements RolePermissionService {
 
     @Override
     public RolePermissionDTO update(Long id, RolePermissionDTO dto) {
-        RolePermission existingRolePermission = rolePermissionRepository.findById(id).orElse(null);
-        if (existingRolePermission == null) {
-            return null;
-        }
+        RolePermission existingRolePermission = getRolePermissionById(id);
         RolePermission updatedRolePermission = rolePermissionMapper.toEntity(dto);
         updatedRolePermission.setId(existingRolePermission.getId());
         return rolePermissionMapper.toDto(rolePermissionRepository.save(updatedRolePermission));
@@ -55,6 +55,11 @@ public class RolePermissionServiceImpl implements RolePermissionService {
     @Override
     public void delete(Long id) {
         rolePermissionRepository.deleteById(id);
+    }
+
+    private RolePermission getRolePermissionById(Long id) {
+        return rolePermissionRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Role Permission not found"));
     }
 
     @Override

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/role-permissions")
+@RequestMapping("/role-permissions")
 public class RolePermissionController {
 
     private final RolePermissionService rolePermissionService;
@@ -21,32 +21,44 @@ public class RolePermissionController {
     }
 
     @PostMapping
-    public ResponseEntity<RolePermissionDTO> createRolePermission(@RequestBody RolePermissionDTO dto) {
-        RolePermissionDTO createdDto = rolePermissionService.create(dto);
-        return new ResponseEntity<>(createdDto, HttpStatus.CREATED);
+    public ResponseEntity<RolePermissionDTO> create(@RequestBody RolePermissionDTO dto) {
+        return new ResponseEntity<>(rolePermissionService.create(dto), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RolePermissionDTO> getRolePermissionById(@PathVariable Long id) {
-        RolePermissionDTO dto = rolePermissionService.getById(id);
-        return new ResponseEntity<>(dto, dto != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    public ResponseEntity<RolePermissionDTO> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(rolePermissionService.getById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<RolePermissionDTO>> getAllRolePermissions() {
-        List<RolePermissionDTO> dtos = rolePermissionService.getAll();
-        return new ResponseEntity<>(dtos, HttpStatus.OK);
+    public ResponseEntity<List<RolePermissionDTO>> getAll() {
+        return ResponseEntity.ok(rolePermissionService.getAll());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RolePermissionDTO> updateRolePermission(@PathVariable Long id, @RequestBody RolePermissionDTO dto) {
-        RolePermissionDTO updatedDto = rolePermissionService.update(id, dto);
-        return new ResponseEntity<>(updatedDto, updatedDto != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    public ResponseEntity<RolePermissionDTO> update(@PathVariable Long id, @RequestBody RolePermissionDTO dto) {
+        return ResponseEntity.ok(rolePermissionService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRolePermission(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         rolePermissionService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/role/{roleId}/permission/{permissionId}")
+    public ResponseEntity<RolePermissionDTO> getByRoleAndPermissionId(@PathVariable Long roleId, @PathVariable Long permissionId) {
+        return ResponseEntity.ok(rolePermissionService.getById(roleId, permissionId));
+    }
+
+    @PutMapping("/role/{roleId}/permission/{permissionId}")
+    public ResponseEntity<RolePermissionDTO> updateByRoleAndPermissionId(@PathVariable Long roleId, @PathVariable Long permissionId, @RequestBody RolePermissionDTO dto) {
+        return ResponseEntity.ok(rolePermissionService.update(roleId, permissionId, dto));
+    }
+
+    @DeleteMapping("/role/{roleId}/permission/{permissionId}")
+    public ResponseEntity<Void> deleteByRoleAndPermissionId(@PathVariable Long roleId, @PathVariable Long permissionId) {
+        rolePermissionService.delete(roleId, permissionId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
