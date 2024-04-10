@@ -1,7 +1,7 @@
-package components.Services.Impl;
+package components.services.impl;
 
-import components.DTO.ProductCategoryDTO;
-import components.Services.ProductCategoryService;
+import components.dto.ProductCategoryDTO;
+import components.services.ProductCategoryService;
 import components.entity.ProductCategory;
 import components.mappers.ProductCategoryMapper;
 import components.repositories.ProductCategoryRepository;
@@ -30,7 +30,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategoryDTO getById(Long id) {
-        return ProductCategoryMapper.toDto(productCategoryRepository.findById(id).orElseThrow());
+        return ProductCategoryMapper.toDto(productCategoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product category not found  " + id)));
     }
 
     @Override
@@ -41,9 +42,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategoryDTO update(Long id, ProductCategoryDTO productCategoryDTO) {
-        ProductCategory productCategory = ProductCategoryMapper.toEntity(productCategoryDTO);
-        productCategory.setId(id);
-        return ProductCategoryMapper.toDto(productCategoryRepository.save(productCategory));
+        ProductCategory existingProductCategory = productCategoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product category not found  " + id));
+
+        existingProductCategory.setName(productCategoryDTO.getName());
+
+        return ProductCategoryMapper.toDto(productCategoryRepository.save(existingProductCategory));
     }
 
     @Override

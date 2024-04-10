@@ -1,13 +1,12 @@
 package components.controllers;
 
-import components.DTO.RoleDTO;
-import components.Services.RoleService;
+import components.dto.RoleDTO;
+import components.services.RoleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -15,8 +14,12 @@ import java.util.List;
 @RequestMapping("/api/roles")
 public class RoleController {
 
+    private final RoleService roleService;
+
     @Autowired
-    private RoleService roleService;
+    public RoleController(RoleService roleService) {
+        this.roleService = roleService;
+    }
 
     @GetMapping
     public ResponseEntity<List<RoleDTO>> getAll() {
@@ -38,7 +41,6 @@ public class RoleController {
 
     @PutMapping("/{id}")
     public ResponseEntity<RoleDTO> update(@PathVariable Long id, @Valid @RequestBody RoleDTO roleDTO) {
-        roleDTO.setId(id); // Ensure ID matches path variable
         RoleDTO updatedRole = roleService.update(id, roleDTO);
         return new ResponseEntity<>(updatedRole, HttpStatus.OK);
     }

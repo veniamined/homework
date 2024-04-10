@@ -1,6 +1,6 @@
-package components.Services;
+package components.services;
 
-import components.DTO.ManufacturerDTO;
+import components.dto.ManufacturerDTO;
 
 public interface ManufacturerService extends AbstractService<ManufacturerDTO, Long> {
 }

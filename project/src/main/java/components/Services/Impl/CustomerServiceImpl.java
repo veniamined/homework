@@ -1,9 +1,9 @@
-package components.Services.Impl;
+package components.services.impl;
 
-import components.Services.CustomerService;
-import components.Services.PasswordEncoderService;
+import components.services.CustomerService;
+import components.services.PasswordEncoderService;
 import components.entity.Customer;
-import components.DTO.CustomerDTO;
+import components.dto.CustomerDTO;
 import components.mappers.CustomerMapper;
 import components.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;

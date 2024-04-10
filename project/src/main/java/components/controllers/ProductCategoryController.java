@@ -1,7 +1,7 @@
 package components.controllers;
 
-import components.DTO.ProductCategoryDTO;
-import components.Services.ProductCategoryService;
+import components.dto.ProductCategoryDTO;
+import components.services.ProductCategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

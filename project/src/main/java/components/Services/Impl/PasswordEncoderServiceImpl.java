@@ -1,7 +1,7 @@
 
-package components.Services.Impl;
+package components.services.impl;
 
-import components.Services.PasswordEncoderService;
+import components.services.PasswordEncoderService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,4 +24,4 @@ public class PasswordEncoderServiceImpl implements PasswordEncoderService {
     }
 }
 
-}
+

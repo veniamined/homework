@@ -1,6 +1,6 @@
-package components.Services;
+package components.services;
 
-import components.DTO.ProductCategoryDTO;
+import components.dto.ProductCategoryDTO;
 
 public interface ProductCategoryService extends AbstractService<ProductCategoryDTO, Long> {
 }

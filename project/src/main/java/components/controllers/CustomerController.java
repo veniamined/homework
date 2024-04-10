@@ -1,8 +1,7 @@
 package components.controllers;
 
-import components.Services.CustomerService;
-import components.DTO.CustomerDTO;
-import components.entity.Customer;
+import components.services.CustomerService;
+import components.dto.CustomerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

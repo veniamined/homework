@@ -1,4 +1,4 @@
-package components.Services;
+package components.services;
 
 public interface PasswordEncoderService {
     static String encode() {

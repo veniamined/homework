@@ -1,6 +1,6 @@
 package components.mappers;
 
-import components.DTO.CustomerDTO;
+import components.dto.CustomerDTO;
 import components.entity.Customer;
 import org.modelmapper.ModelMapper;
 

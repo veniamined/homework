@@ -1,6 +1,6 @@
 package components.mappers;
 
-import components.DTO.ProductCategoryDTO;
+import components.dto.ProductCategoryDTO;
 import components.entity.ProductCategory;
 import org.modelmapper.ModelMapper;
 

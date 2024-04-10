@@ -1,3 +1,17 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/homework.yaml
+      file: db/changelog/changeset-v.1.0/ProductCategories.yaml
+  - include:
+      file: db/changelog/changeset-v.1.0/Manufacturers.yaml
+  - include:
+      file: db/changelog/changeset-v.1.0/Roles.yaml
+  - include:
+      file: db/changelog/changeset-v.1.0/Customers.yaml
+  - include:
+      file: db/changelog/changeset-v.1.0/Products.yaml
+  - include:
+      file: db/changelog/changeset-v.1.0/Orders.yaml
+  - include:
+      file: db/changelog/changeset-v.1.0/Permissions.yaml
+  - include:
+      file: db/changelog/changeset-v.1.0/RolePermissions.yaml

@@ -1,6 +1,6 @@
-package components.Services;
+package components.services;
 
-import components.DTO.RoleDTO;
+import components.dto.RoleDTO;
 
 public interface RoleService extends AbstractService<RoleDTO, Long> {
 }

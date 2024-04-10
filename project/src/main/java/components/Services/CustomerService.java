@@ -1,6 +1,6 @@
-package components.Services;
+package components.services;
 
-import components.DTO.CustomerDTO;
+import components.dto.CustomerDTO;
 import components.entity.Customer;
 
 public interface CustomerService extends AbstractService<CustomerDTO, Long> {

@@ -1,13 +1,12 @@
 package components.controllers;
 
-import components.DTO.ManufacturerDTO;
-import components.Services.ManufacturerService;
+import components.dto.ManufacturerDTO;
+import components.services.ManufacturerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -38,7 +37,6 @@ public class ManufacturerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ManufacturerDTO> update(@PathVariable Long id, @Valid @RequestBody ManufacturerDTO manufacturerDTO) {
-        manufacturerDTO.SetId(id); // Ensure ID matches path variable
         ManufacturerDTO updatedManufacturer = manufacturerService.update(id, manufacturerDTO);
         return new ResponseEntity<>(updatedManufacturer, HttpStatus.OK);
     }

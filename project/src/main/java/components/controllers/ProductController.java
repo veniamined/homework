@@ -1,7 +1,7 @@
 package components.controllers;
 
-import components.DTO.ProductDTO;
-import components.Services.ProductService;
+import components.dto.ProductDTO;
+import components.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,8 +14,12 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductController {
 
+    private final ProductService productService;
+
     @Autowired
-    private ProductService productService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getAll() {
@@ -37,7 +41,6 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductDTO> update(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
-        productDTO.setId(id); // Ensure ID matches path variable
         ProductDTO updatedProduct = productService.update(id, productDTO);
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }

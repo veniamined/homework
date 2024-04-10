@@ -1,10 +1,13 @@
-package components.DTO;
-import lombok.Data;
+package components.dto;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Setter
+@Getter
 public class RolePermissionDTO {
 
-    private Long roleId;
-    private Long permissionId;
+    private Long role;
+    private Long permission;
 }
 

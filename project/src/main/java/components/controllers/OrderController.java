@@ -1,8 +1,7 @@
 package components.controllers;
 
-
-import components.DTO.OrderDTO;
-import components.Services.OrderService;
+import components.dto.OrderDTO;
+import components.services.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +37,6 @@ public class OrderController {
 
     @PutMapping("/{id}")
     public ResponseEntity<OrderDTO> update(@PathVariable Long id, @Valid @RequestBody OrderDTO orderDTO) {
-        orderDTO.setId(id); // Ensure ID matches path variable
         OrderDTO updatedOrder = orderService.update(id, orderDTO);
         return new ResponseEntity<>(updatedOrder, HttpStatus.OK);
     }

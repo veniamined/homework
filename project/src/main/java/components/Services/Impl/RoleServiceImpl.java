@@ -1,7 +1,7 @@
-package components.Services.Impl;
+package components.services.impl;
 
-import components.DTO.RoleDTO;
-import components.Services.RoleService;
+import components.dto.RoleDTO;
+import components.services.RoleService;
 import components.entity.Role;
 import components.mappers.RoleMapper;
 import components.repositories.RoleRepository;
@@ -46,6 +46,4 @@ public class RoleServiceImpl implements RoleService {
     public void delete(Long id) {
         roleRepository.deleteById(id);
     }
-
 }
-

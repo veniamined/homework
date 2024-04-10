@@ -1,7 +1,7 @@
-package components.Services.Impl;
+package components.services.impl;
 
-import components.DTO.ManufacturerDTO;
-import components.Services.ManufacturerService;
+import components.dto.ManufacturerDTO;
+import components.services.ManufacturerService;
 import components.entity.Manufacturer;
 import components.mappers.ManufacturerMapper;
 import components.repositories.ManufacturerRepository;
@@ -37,14 +37,17 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     public ManufacturerDTO update(Long id, ManufacturerDTO manufacturerDTO) {
-        Manufacturer manufacturer = ManufacturerMapper.toEntity(manufacturerDTO);
-        manufacturer.setId(id);
-        return ManufacturerMapper.toDto(manufacturerRepository.save(manufacturer));
+        Manufacturer existingManufacturer = manufacturerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("не найдена: " + id));
+
+        existingManufacturer.setName(manufacturerDTO.getName());
+        existingManufacturer.setCountry(manufacturerDTO.getCountry());
+
+        return ManufacturerMapper.toDto(manufacturerRepository.save(existingManufacturer));
     }
 
     @Override
     public void delete(Long id) {
         manufacturerRepository.deleteById(id);
     }
-
 }

@@ -3,22 +3,31 @@ package components.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.io.Serializable;
+
+@Setter
 @Getter
 @Entity
 @Table(name = "Role_Permissions")
 public class RolePermission {
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    @EmbeddedId
+    private RolePermissionId id;
 
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "permission_id", nullable = false)
-    private Permission permission;
+    // Конструкторы, геттеры и сеттеры, если нужно
+
+    @Embeddable
+    public static class RolePermissionId implements Serializable {
+        @ManyToOne
+        @JoinColumn(name = "role_id", nullable = false)
+        private Role role;
+
+        @ManyToOne
+        @JoinColumn(name = "permission_id", nullable = false)
+        private Permission permission;
 
 
+    }
 }
